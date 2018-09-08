@@ -5,21 +5,24 @@ import {selectPizza} from '../actions/pizzas'
 
 
 class BaseFormContainer extends React.PureComponent {
-  state = {
-    base: {
-      id: 1,
-      type: "25cm NY Style",
-      price: 8.99
-    },
-    sauce: {
-      id: 1,
-      type: "White sauce",
-      price: 0
-    },
-    toppings: [],
-    turboDrone: false
-  }
+  state = this.props.pizzas.selectedPizza 
 
+  // {
+  //   base: {
+  //     id: 1,
+  //     type: "25cm NY Style",
+  //     price: 8.99
+  //   },
+  //   sauce: {
+  //     id: 1,
+  //     type: "White sauce",
+  //     price: 0
+  //   },
+  //   toppings: [],
+  //   turboDrone: false
+  // }
+
+  
   handleChangeBase = (event) => {
     const baseId = parseInt(event.target.value)
     const selectedBase = this.props.pizzas.bases.find(base => (base.id === baseId))
@@ -99,6 +102,7 @@ class BaseFormContainer extends React.PureComponent {
   }
 
   render() {
+    console.log(this.state)
     return (
       <BaseForm 
         bases={this.props.pizzas.bases}

@@ -7,9 +7,9 @@ class Total extends React.Component {
 
     if (this.props.pizzas.turboDrone === true) {
       const total = subTotal + (subTotal * 0.1)
-      return total
+      return parseFloat(total).toFixed(2)
     } else {
-      return subTotal
+      return parseFloat(subTotal).toFixed(2)
     }
    } 
 

@@ -6,6 +6,15 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
+img {
+  height: 30%;
+  width: 30%;
+}
+
 .wrapper {
   margin: 20px;
+}
+
+.homepage-wrapper {
+  text-align: center;
 }
