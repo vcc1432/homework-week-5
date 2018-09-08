@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import PizzaFormContainer from './components/PizzaFormContainer';
+import BaseFormContainer from './components/BaseFormContainer';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <h1>Pizza Configurator!</h1>
-        <PizzaFormContainer />
+        <BaseFormContainer />
       </div>
     );
   }
