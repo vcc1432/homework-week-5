@@ -5,7 +5,7 @@ import {selectPizza} from '../actions/pizzas'
 
 
 class BaseFormContainer extends React.PureComponent {
-  state = {base: {}, sauce: {}, toppings: []}
+  state = {base: {}, sauce: {}}
 
   handleChangeBase = (event) => {
     const baseId = parseInt(event.target.value)
@@ -33,13 +33,17 @@ class BaseFormContainer extends React.PureComponent {
     }) 
   }
 
-  componentWillUpdate= (prevState) => {
-    console.log('This is the prevState:', prevState)
-   if (prevState.pizzas.selectedPizza !== this.state) {
-    this.props.selectPizza(this.state)
-    } 
-  }
+  // componentWillUpdate= (prevState) => {
+  //   console.log('This is the prevState:', prevState)
+  //  if (prevState.pizzas.selectedPizza !== this.state) {
+  //   this.props.selectPizza(this.state)
+  //   } 
+  // }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.selectPizza(this.state)
+  }
 
   render() {
     console.log(this.state)
@@ -49,7 +53,8 @@ class BaseFormContainer extends React.PureComponent {
         bases={this.props.pizzas.bases}
         sauces={this.props.pizzas.sauces}
         handleChangeBase={this.handleChangeBase}
-        handleChangeSauce={this.handleChangeSauce}/>
+        handleChangeSauce={this.handleChangeSauce}
+        handleSubmit={this.handleSubmit}/>
       )
   }
 }
