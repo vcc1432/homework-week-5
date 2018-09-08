@@ -1,20 +1,18 @@
-import { bases, sauces } from '../components/options'
-import { SELECT_BASE, SELECT_SAUCE} from '../actions/pizzas'
+import { bases, sauces, toppings } from '../components/options'
+import { SELECT_PIZZA } from '../actions/pizzas'
 
 
 const initialState = {
   bases,
   sauces,
-  selectedBase: {},
-  selectedSauce: {}
+  toppings,
+  selectedPizza: {}
 }
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-      case SELECT_BASE:
-      return {...state, selectedBase: action.payload}
-      case SELECT_SAUCE:
-      return {...state, selectedSauce: action.payload}
+      case SELECT_PIZZA:
+      return {...state, selectedPizza: action.payload}
     default:
       return state
     }

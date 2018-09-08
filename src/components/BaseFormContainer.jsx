@@ -1,35 +1,55 @@
 import * as React from 'react'
 import {connect} from 'react-redux';
 import BaseForm from './BaseForm'
-import { bases } from './options'
-import {selectBase} from '../actions/pizzas'
+import {selectPizza} from '../actions/pizzas'
 
 
 class BaseFormContainer extends React.PureComponent {
-  state = {
-    id: '',
-    type: '',
-    price: ''
-  }
+  state = {base: {}, sauce: {}, toppings: []}
 
-  handleChange = (event) => {
+  handleChangeBase = (event) => {
     const baseId = parseInt(event.target.value)
-    const selectedBase = bases.find(base => (base.id === baseId))
+    const selectedBase = this.props.pizzas.bases.find(base => (base.id === baseId))
       
   this.setState({
-    id: selectedBase.id,
-    type: selectedBase.type,
-    price: selectedBase.price
+       base: {
+        id: selectedBase.id,
+        type: selectedBase.type,
+        price: selectedBase.price
+      }
     }) 
-  this.props.selectBase(this.state)
   }
-  
+
+  handleChangeSauce = (event) => {
+    const sauceId = parseInt(event.target.value)
+    const selectedSauce = this.props.pizzas.sauces.find(sauce => (sauce.id === sauceId))
+      
+  this.setState({ 
+      sauce: {
+        id: selectedSauce.id,
+        type: selectedSauce.type,
+        price: selectedSauce.price
+      }
+    }) 
+  }
+
+  componentWillUpdate= (prevState) => {
+    console.log('This is the prevState:', prevState)
+   if (prevState.pizzas.selectedPizza !== this.state) {
+    this.props.selectPizza(this.state)
+    } 
+  }
+
 
   render() {
+    console.log(this.state)
+    console.table(this.state)
     return (
       <BaseForm 
         bases={this.props.pizzas.bases}
-        handleChange={this.handleChange}/>
+        sauces={this.props.pizzas.sauces}
+        handleChangeBase={this.handleChangeBase}
+        handleChangeSauce={this.handleChangeSauce}/>
       )
   }
 }
@@ -40,7 +60,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps, {selectBase})(BaseFormContainer)
+export default connect(mapStateToProps, {selectPizza})(BaseFormContainer)
 
 
 

@@ -1,17 +1,9 @@
-export const SELECT_BASE = 'SELECT_BASE'
-export const SELECT_SAUCE = 'SELECT_SAUCE'
+export const SELECT_PIZZA = 'SELECT_PIZZA'
 
 
-export function selectBase(selectedBase){
+export function selectPizza(selected){
     return {
-      type: SELECT_BASE,
-      payload: selectedBase
-    }
-  }
-
-  export function selectSauce(selectedSauce){
-    return {
-      type: SELECT_SAUCE,
-      payload: selectedSauce
+      type: SELECT_PIZZA,
+      payload: selected
     }
   }
