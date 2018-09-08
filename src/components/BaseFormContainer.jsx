@@ -16,6 +16,7 @@ class BaseFormContainer extends React.PureComponent {
       type: "White sauce",
       price: 0
     },
+    toppings: [],
     turboDrone: false
   }
 
@@ -62,23 +63,53 @@ class BaseFormContainer extends React.PureComponent {
     });
   }
 
+  handleToppings = event => {
+    const target = event.target;
+    const toppingArray = [...this.state.toppings] || []
+
+    if (target.checked) {
+      toppingArray.push(target.value)
+    } else {
+      toppingArray.splice(toppingArray.indexOf(target.key), 1);
+    }
+
+    if (toppingArray.length <=3) {
+    this.setState({
+      [event.target.name]: toppingArray
+    })
+  } else {
+    alert("You have exceeded the number of toppings")
+  }
+  }
+
+  // handleToppings= (event) => {
+  // //const toppingId = parseInt(event.target.key)
+  // //const selectedTopping = this.props.pizzas.toppings.map(topping => (topping.id === toppingId))
+  // const selectedTopping = event.target.value
+  // const toppingArray = []
+  // toppingArray.push(selectedTopping)
+  //   this.setState({
+  //   [event.target.name]: toppingArray
+  // })
+  // }
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.selectPizza(this.state)
   }
 
   render() {
-    console.log(this.state)
-    console.table(this.state)
     return (
       <BaseForm 
         bases={this.props.pizzas.bases}
         sauces={this.props.pizzas.sauces}
+        toppings={this.props.pizzas.toppings}
         handleChangeBase={this.handleChangeBase}
         handleChangeSauce={this.handleChangeSauce}
         handleSubmit={this.handleSubmit}
         handleInputChange={this.handleInputChange}
         turboDrone={this.state.turboDrone}
+        handleToppings={this.handleToppings}
         />
       )
   }
