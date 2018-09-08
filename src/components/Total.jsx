@@ -3,8 +3,14 @@ import {connect} from 'react-redux';
 
 class Total extends React.Component {
    getTotal = () => {
-    const total = this.props.pizzas.base.price + this.props.pizzas.sauce.price
-    return total
+    const subTotal = this.props.pizzas.base.price + this.props.pizzas.sauce.price
+
+    if (this.props.pizzas.turboDrone === true) {
+      const total = subTotal + (subTotal * 0.1)
+      return total
+    } else {
+      return subTotal
+    }
    } 
 
 

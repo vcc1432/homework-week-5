@@ -16,7 +16,14 @@ export default function BaseForm(props) {
       </select>
       <br />
 
-      
+    <label>Turbo Drone Delivery?  </label>
+          <input
+            name="turboDrone"
+            type="checkbox"
+            checked={props.turboDrone}
+            onChange={props.handleInputChange} />
+        <br />
+
       <button type="submit">Save</button>
     </form>
   </div>)

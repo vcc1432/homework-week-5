@@ -5,7 +5,19 @@ import {selectPizza} from '../actions/pizzas'
 
 
 class BaseFormContainer extends React.PureComponent {
-  state = {base: {}, sauce: {}}
+  state = {
+    base: {
+      id: 1,
+      type: "25cm NY Style",
+      price: 8.99
+    },
+    sauce: {
+      id: 1,
+      type: "White sauce",
+      price: 0
+    },
+    turboDrone: false
+  }
 
   handleChangeBase = (event) => {
     const baseId = parseInt(event.target.value)
@@ -40,6 +52,16 @@ class BaseFormContainer extends React.PureComponent {
   //   } 
   // }
 
+  handleInputChange= (event) => {
+    const target = event.target;
+    const value = target.checked
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.selectPizza(this.state)
@@ -54,7 +76,10 @@ class BaseFormContainer extends React.PureComponent {
         sauces={this.props.pizzas.sauces}
         handleChangeBase={this.handleChangeBase}
         handleChangeSauce={this.handleChangeSauce}
-        handleSubmit={this.handleSubmit}/>
+        handleSubmit={this.handleSubmit}
+        handleInputChange={this.handleInputChange}
+        turboDrone={this.state.turboDrone}
+        />
       )
   }
 }

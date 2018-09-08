@@ -16,7 +16,8 @@ const initialState = {
       id: 1,
       type: "White sauce",
       price: 0
-    } 
+    },
+    turboDrone: false
   },
   selectedToppings: []
 }
